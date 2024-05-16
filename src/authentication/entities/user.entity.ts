@@ -44,10 +44,10 @@ export class User {
 /*     @OneToMany(
         //¿cómo se va a relacionar?:
         //1. Citamos la entidad con la que se relaciona, la tabla a la que quiero apuntar
-        () => Product,
+        () => Password,
         //2. ¿Cómo se relaciona mi instancia de producto con esta tabla?. Ponemos el atributo o propiedad "user" que debería estar en la entidad "Product"
-        (product) => product.user,
+        (password) => password.user,
     )
-    product: Product[]; */
+    password: Password[]; */
 
 }
