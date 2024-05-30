@@ -1,11 +1,24 @@
 import { Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
+import * as generator from 'generate-password';
 import { CreatePassHandlerDto } from './dto/create-pass-handler.dto';
 import { UpdatePassHandlerDto } from './dto/update-pass-handler.dto';
 
 @Injectable()
 export class PassHandlerService {
   create(createPassHandlerDto: CreatePassHandlerDto) {
-    return 'This action adds a new passHandler';
+    
+    const password = generator.generate({
+      length: createPassHandlerDto.passwordLength,
+      numbers: createPassHandlerDto.containNumbers,
+      symbols: createPassHandlerDto.containSymbols,
+      lowercase: createPassHandlerDto.containLowercases,
+      uppercase: createPassHandlerDto.containUppercases,
+    });
+
+    const encryptedPassword = bcrypt.hashSync( password, 10);
+
+    return { password, encryptedPassword };
   }
 
   findAll() {

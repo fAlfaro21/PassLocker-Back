@@ -1,5 +1,5 @@
-//import { Product } from '../../products/entities';
 import { Column, Entity, PrimaryGeneratedColumn, BeforeInsert, BeforeUpdate, OneToMany } from 'typeorm';
+import { Password } from 'src/pass-handler/entities/pass-handler.entity';
 
 @Entity('users') //ponemos el nombre 'users'
 export class User {
@@ -40,14 +40,13 @@ export class User {
         this.email = this.email.toLowerCase().trim();
     }
 
-    //Todo Relación con tabla de contraseñas
-/*     @OneToMany(
+    @OneToMany(
         //¿cómo se va a relacionar?:
         //1. Citamos la entidad con la que se relaciona, la tabla a la que quiero apuntar
         () => Password,
-        //2. ¿Cómo se relaciona mi instancia de producto con esta tabla?. Ponemos el atributo o propiedad "user" que debería estar en la entidad "Product"
-        (password) => password.user,
+        //2. ¿Cómo se relaciona mi instancia de users con esta tabla?. Ponemos el atributo o propiedad "user" que debería estar en la entidad "Password"
+        (Password) => Password.user,
     )
-    password: Password[]; */
+    passwords: Password[];
 
 }
