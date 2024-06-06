@@ -26,7 +26,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config); //puedo cambiar, tema, colores, etc
   SwaggerModule.setup('api', app, document); // se crea en el endpoint api, va a envial la app y nuestro docto
 
-  await app.listen(process.env.PORT);
-  Logger.log(`App running on port ${process.env.PORT}`);
+  const port = process.env.PORT || 3000;  // Fallback to 3000 if PORT is not defined
+  await app.listen(port);
+  Logger.log(`App running on port ${port}`);
+  Logger.log(`Fichero .env ${process.env.SMTP_HOST}`);
 }
 bootstrap();

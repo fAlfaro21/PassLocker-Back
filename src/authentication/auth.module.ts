@@ -22,8 +22,8 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       defaultStrategy: 'jwt',
     }),
     //Para un registro asíncrono, para asegurarme de que el módulo se monte cuando ya tenga definido el JWT_SECRET (o incluso, el resto de los valores de las variables de entorno)
-    JwtModule.registerAsync({
-      imports: [ ConfigModule ], //Importo esto que luego...
+    JwtModule.register({
+      /* imports: [ ConfigModule ], //Importo esto que luego...
       inject: [ ConfigService ], //...me va a permitir injectar mi ConfigService
       useFactory: ( configService: ConfigService ) => { //es la función que se va a llamar cuando se intente registrar de manera asíncrona el módulo
         
@@ -36,22 +36,25 @@ import { JwtStrategy } from './strategies/jwt.strategy';
             expiresIn: '2h',
           }
         }
-      }}),
+      } */
+      secret: process.env.JWT_SECRET,  // Ensure this environment variable is correctly set
+      signOptions: { expiresIn: '2h' },
+    }),
 
       MailerModule.forRootAsync({
         useFactory: () => ({
           transport: {
-            host: process.env.MAIL_HOST,
+            host: 'smtp.hostinger.com',
             pool:true,
-            port: +process.env.MAIL_PORT,
+            port: 587,
             secure: false, 
             ignoreTLS:true,
             auth: {
-              user: process.env.MAIL_USER,
-              pass: process.env.MAIL_PASSWORD,
+              user: 'no-reply@tsaltirov.es',
+              pass: 'MySecr3tPassWord@',
             },
             tls: {
-
+              
             }
           },
           attachments: [
