@@ -1,5 +1,9 @@
-dist/
-node_modules/
-.gitignore
-
-.git/
+**/.git
+**/.gitignore
+**/node_modules
+**/docs
+**/dockerfile
+**/README.md
+**/LICENSE
+**/.hintrc
+**/.eslintrc.cjs

@@ -4,11 +4,22 @@ services:
   db:
     image: postgres:14.3
     restart: always
-    ports:
-      - "5432:5432"
     environment:
+      POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
-    container_name: passlockerdb
+      POSTGRES_HOST: db
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql
+    networks:
+      - mynet
+  web:
+    build: .
+    depends_on:
+     - db
+    networks:
+      - mynet
+      
+networks:
+  mynet:
+    driver: bridge
