@@ -19,13 +19,15 @@ services:
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
+      - DB_HOST=${DB_HOST}
       #SMTP configuration
       - SMTP_HOST=smtp.hostinger.com
       - SMTP_PORT=587
       - SMTP_USER=no-reply@tsaltirov.es  
       - SMTP_PASS=MySecr3tPassWord@  
       - SMTP_SECURE=false 
-    
+    volumes:
+      - ./src/assets:/app/src/assets
   db:
     image: postgres:14.3
     restart: always
