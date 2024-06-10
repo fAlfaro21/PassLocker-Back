@@ -41,13 +41,13 @@ export class AuthService {
 
       const passEncrypted = bcrypt.hashSync(password, 10);
 
-    
+      console.log('SMTP Host:', process.env.SMTP_HOST);
 
       try {
-
+        
         this.sendMail({
           to: userData.email,
-          from: process.env.MAIL_USER,
+          from: process.env.SMTP_USER,
           subject: 'Confirm your email',
           html: `<!DOCTYPE html>
           <html lang="es">
@@ -247,7 +247,7 @@ export class AuthService {
 
         this.sendMail({
           to: email,
-          from: process.env.MAIL_USER,
+          from: process.env.SMTP_USER,
           subject: 'Verification Code',
           html: `<!DOCTYPE html>
           <html lang="es">
@@ -441,7 +441,7 @@ export class AuthService {
         //Prepara envío de correo
         this.sendMail({
           to: email,
-          from: process.env.MAIL_USER,
+          from: process.env.SMTP_USER,
           subject: 'Reset your email',
           html: `<!DOCTYPE html>
           <html lang="es">
