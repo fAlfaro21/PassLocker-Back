@@ -29,6 +29,5 @@ async function bootstrap() {
   const port = process.env.PORT || 3000;  // Fallback to 3000 if PORT is not defined
   await app.listen(port);
   Logger.log(`App running on port ${port}`);
-  Logger.log(`Fichero .env ${process.env.SMTP_HOST}`);
 }
 bootstrap();
