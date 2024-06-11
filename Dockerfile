@@ -26,3 +26,4 @@ RUN npm install --prod
 
 COPY --from=builder /app/dist ./dist
 
+CMD [ "node","dist/main" ]
