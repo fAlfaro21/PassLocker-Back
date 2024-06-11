@@ -7,7 +7,6 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    image: passlocker-docker
     container_name: passlockerapp
     restart: always # reiniciar el contenedor si se detiene
     ports:
